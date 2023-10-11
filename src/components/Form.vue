@@ -22,11 +22,14 @@ import { IEssence, TEssence } from "@/store/types/IEssence";
 import { ESSENCES } from "@/constants/essences";
 
 import { useEssenceStore } from "@/store/essences";
+import { useNotyStore } from "@/store/noty";
 
 import { ref, Ref, computed } from "vue";
 
 const essencesStore = useEssenceStore();
+const notyStore = useNotyStore();
 const { createEssence } = essencesStore;
+const { msgTemp } = notyStore;
 
 const essenceTitle = ref<string>("");
 const selectedEssence = ref(null) as Ref<IEssence | null>;
@@ -46,8 +49,11 @@ const handleCreateEssence = async () => {
         type: selectedEssence.value.value as TEssence,
         value: selectedEssence.value.value,
       }));
+
+    msgTemp({ type: "success", message: "Сущность успешно создана" });
   } catch (error) {
-    error instanceof Error && console.error(error.message);
+    error instanceof Error &&
+      msgTemp({ type: "error", message: error.message });
   } finally {
     isLoading.value = false;
   }
