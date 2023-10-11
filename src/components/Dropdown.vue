@@ -1,5 +1,5 @@
 <template>
-  <div class="dropdown">
+  <div ref="dropdown" class="dropdown">
     <div class="dropdown__field" @click="changeListVisible">
       {{ selectedItem }}
     </div>
@@ -18,7 +18,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref, onMounted } from "vue";
+import { onClickOutside } from "@vueuse/core";
 
 import { IDropdownItem } from "@/types/IDropdownItem";
 
@@ -32,6 +33,7 @@ const emits = defineEmits(["update:modelValue"]);
 
 const defaultItem = ref<IDropdownItem>({ title: "Не выбрано", value: "none" });
 const isOpen = ref<boolean>(false);
+const dropdown = ref<HTMLDivElement | null>(null);
 
 const selectedItem = computed(
   () => (props.modelValue && props.modelValue.title) || defaultItem.value.title
@@ -48,6 +50,14 @@ const handleSelect = (selectedItem: IDropdownItem) => {
 const getActiveClass = (title: string) => {
   return title === selectedItem.value && "dropdown__item_active";
 };
+
+onMounted(() => {
+  onClickOutside(dropdown.value, () => hideList());
+
+  return () => {
+    onClickOutside(dropdown.value, () => hideList());
+  };
+});
 </script>
 
 <style scoped lang="scss">
