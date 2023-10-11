@@ -1,0 +1,33 @@
+.input {
+  &__wrapper {
+    border: 1px solid $black;
+    border-radius: 8px;
+
+    width: 100%;
+
+    background-color: $white;
+  }
+
+  margin: 0;
+
+  border: none;
+  outline: none;
+  border-radius: 8px;
+
+  width: 100%;
+  color: $black;
+
+  font-weight: 600;
+  background-color: $white;
+}
+
+@include desktop-lg {
+  .input {
+    &__wrapper {
+      padding: 12px 16px;
+    }
+
+    font-size: 16px;
+    line-height: 20px;
+  }
+}

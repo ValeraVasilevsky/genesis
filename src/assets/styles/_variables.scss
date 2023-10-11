@@ -1,0 +1,40 @@
+$grid-laptop: repeat(12, 1fr);
+$grid-tablet: repeat(8, 1fr);
+$grid-mobile: repeat(6, 1fr);
+
+$min-laptop-lg: 1440px;
+
+$max-laptop: 1339px;
+$min-laptop: 1024px;
+
+$max-tablet: 1023px;
+$min-tablet: 768px;
+
+$max-mobile: 767px;
+$min-mobile: 320px;
+
+// Mixins
+
+@mixin desktop-lg {
+  @media screen and (min-width: $min-laptop-lg) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: $min-laptop) and (max-width: $max-laptop) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (min-width: $min-tablet) and (max-width: $max-tablet) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media screen and (min-width: $min-mobile) and (max-width: $max-mobile) {
+    @content;
+  }
+}

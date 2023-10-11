@@ -1,0 +1,22 @@
+.wrapper {
+  display: grid;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+@include desktop-lg {
+  .wrapper {
+    grid-template-columns: $grid-laptop;
+    padding: 32px 40px;
+
+    height: calc(100vh - 64px);
+
+    &__form {
+      grid-column: 1 / 6;
+    }
+
+    &__table {
+      grid-column: 7 / -1;
+    }
+  }
+}

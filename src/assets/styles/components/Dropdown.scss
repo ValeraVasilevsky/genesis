@@ -1,0 +1,49 @@
+.dropdown {
+  position: relative;
+  width: 100%;
+
+  &__field,
+  &__list {
+    border: 1px solid $black;
+    border-radius: 8px;
+    background-color: $white;
+  }
+
+  &__field,
+  &__item {
+    padding: 12px 16px;
+  }
+
+  &__field {
+    cursor: pointer;
+  }
+
+  &__list {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    z-index: 10;
+  }
+
+  &__item {
+    transition: 0.2s;
+    cursor: pointer;
+
+    &:first-child {
+      border-radius: 8px 8px 0px 0px;
+    }
+    &:last-child {
+      border-radius: 0px 0px 8px 8px;
+    }
+
+    &_active,
+    &:hover {
+      background-color: $secondary;
+    }
+
+    &_active {
+      font-weight: 600;
+    }
+  }
+}

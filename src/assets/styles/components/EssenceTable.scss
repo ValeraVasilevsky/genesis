@@ -1,0 +1,42 @@
+.essence-table {
+  height: inherit;
+  overflow-y: auto;
+  position: relative;
+
+  &__header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  &__title {
+    text-align: left;
+  }
+
+  &__title,
+  &__value {
+    color: $black;
+  }
+
+  &__row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 2px solid $secondary;
+    background-color: $white;
+  }
+}
+
+@include desktop-lg {
+  .essence-table {
+    &__title,
+    &__value {
+      padding: 16px 8px;
+
+      &:first-child {
+        width: 10%;
+      }
+    }
+  }
+}
